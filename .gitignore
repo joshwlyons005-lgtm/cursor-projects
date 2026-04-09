@@ -1,0 +1,6 @@
+# Independent repos live in subfolders (each has its own .git)
+vcbn-site/
+
+.DS_Store
+Thumbs.db
+*.log
