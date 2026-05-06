@@ -1,119 +1,65 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { LINKS, mailtoDevNet } from "@/lib/links";
 
 const quickLinks = [
-  { href: "/news", label: "Latest News" },
-  { href: "/schedule", label: "Schedule" },
-  { href: "/roster", label: "Roster" },
-  { href: "/#fan-zone", label: "Fan Zone" },
+  { href: "/builders", label: "Builders" },
+  { href: "/chapters", label: "Chapters" },
+  { href: "/projects", label: "Projects" },
+  { href: "/events", label: "Events" },
+  { href: "/about", label: "About" },
+  { href: "/join", label: "Join" },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#030712]">
+    <footer className="border-t border-white/10 bg-black/40">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <Image
-              src="/logo.svg"
-              alt="Toronto Blue Jays"
+              src="/devnet-logo.svg"
+              alt="DevNet"
               width={180}
-              height={36}
+              height={40}
               className="h-9 w-auto opacity-95"
             />
-            <p className="max-w-xs text-sm leading-relaxed text-slate-400">
-              Toronto’s team. Rogers Centre energy. A city that shows up — this
-              is built for fans who live the innings.
+            <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+              DevNet is a North American builder network helping students,
+              developers, founders, and AI-native creators ship real projects,
+              connect with other builders, and build public proof of work.
             </p>
-            <div className="flex gap-3 pt-2">
+            <div className="flex flex-wrap gap-3 pt-2">
               <a
-                href="https://twitter.com"
+                href={LINKS.x}
                 target="_blank"
-                rel="noreferrer"
-                className="rounded-md border border-white/15 p-2 text-slate-300 transition-colors hover:border-jays-blue hover:text-white"
-                aria-label="X (Twitter)"
+                rel="noopener noreferrer"
+                className="rounded-md border border-white/15 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-white"
               >
-                <svg
-                  className="size-5"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden
-                >
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
+                X @devnet_x
               </a>
               <a
-                href="https://instagram.com"
+                href={LINKS.linkedIn}
                 target="_blank"
-                rel="noreferrer"
-                className="rounded-md border border-white/15 p-2 text-slate-300 transition-colors hover:border-jays-blue hover:text-white"
-                aria-label="Instagram"
+                rel="noopener noreferrer"
+                className="rounded-md border border-white/15 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/50 hover:text-white"
               >
-                <svg
-                  className="size-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  aria-hidden
-                >
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-md border border-white/15 p-2 text-slate-300 transition-colors hover:border-jays-blue hover:text-white"
-                aria-label="Facebook"
-              >
-                <svg
-                  className="size-5"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-md border border-white/15 p-2 text-slate-300 transition-colors hover:border-jays-blue hover:text-white"
-                aria-label="YouTube"
-              >
-                <svg
-                  className="size-5"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden
-                >
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-                  <polygon
-                    fill="#050b14"
-                    points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
-                  />
-                </svg>
+                LinkedIn @devnet
               </a>
             </div>
           </div>
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-widest text-white">
-              Quick links
+              Navigate
             </h3>
             <ul className="mt-4 space-y-2">
               {quickLinks.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-white"
+                    className="text-sm text-muted-foreground transition-colors hover:text-white"
                   >
                     {l.label}
                   </Link>
@@ -124,64 +70,55 @@ export function Footer() {
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-widest text-white">
-              Contact
+              Forms
             </h3>
-            <address className="mt-4 not-italic text-sm text-slate-400">
-              <p>Rogers Centre</p>
-              <p>1 Blue Jays Way</p>
-              <p>Toronto, ON M5V 1J1</p>
-              <p className="mt-3">
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
                 <a
-                  href="tel:+14163413661"
-                  className="hover:text-white"
+                  href={LINKS.featureForm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-white"
                 >
-                  (416) 341-3661
+                  Apply for a Feature
                 </a>
-              </p>
-              <p>
+              </li>
+              <li>
                 <a
-                  href="mailto:fans@bluejays.demo"
-                  className="hover:text-white"
+                  href={LINKS.ambassadorForm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-white"
                 >
-                  fans@bluejays.demo
+                  Apply to Become an Ambassador
                 </a>
-              </p>
-            </address>
+              </li>
+            </ul>
           </div>
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-widest text-white">
-              Newsletter
+              Contact
             </h3>
-            <p className="mt-4 text-sm text-slate-400">
-              Game recaps, ticket drops, and city stories — straight to your
-              inbox.
-            </p>
-            <form className="mt-4 flex flex-col gap-2 sm:flex-row" action="#" method="get">
-              <Input
-                type="email"
-                required
-                placeholder="you@email.com"
-                className="border-white/15 bg-white/5 text-white placeholder:text-slate-500"
-              />
-              <Button
-                type="submit"
-                className="shrink-0 bg-jays-red text-white hover:bg-jays-red/90"
-              >
-                Sign up
-              </Button>
-            </form>
+            <address className="mt-4 not-italic text-sm text-muted-foreground">
+              <p>
+                <a href={mailtoDevNet()} className="hover:text-white">
+                  {LINKS.email}
+                </a>
+              </p>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Prefer starting in public? Message us on X or LinkedIn — we read
+                everything.
+              </p>
+            </address>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} Fan demo site. Not affiliated with MLB
-            or the Toronto Blue Jays.
-          </p>
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} DevNet. All rights reserved.</p>
           <p className="max-w-xl sm:text-right">
-            Placeholder content for design showcase. Tickets and links point to
-            public MLB destinations where applicable.
+            Builder network — not a traditional coding club. Ship real projects and build
+            public proof of work.
           </p>
         </div>
       </div>

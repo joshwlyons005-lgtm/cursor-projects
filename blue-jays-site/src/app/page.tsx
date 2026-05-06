@@ -1,23 +1,35 @@
-import { FanExperience } from "@/components/sections/FanExperience";
-import { FeaturedPlayers } from "@/components/sections/FeaturedPlayers";
-import { Gallery } from "@/components/sections/Gallery";
-import { Hero } from "@/components/sections/Hero";
-import { LatestNews } from "@/components/sections/LatestNews";
-import { RosterSection } from "@/components/sections/RosterSection";
-import { Schedule } from "@/components/sections/Schedule";
-import { Standings } from "@/components/sections/Standings";
+import { AnyoneCanBuild } from "@/components/devnet/sections/AnyoneCanBuild";
+import { CoreBeliefs } from "@/components/devnet/sections/CoreBeliefs";
+import { DevNetHero } from "@/components/devnet/sections/DevNetHero";
+import { EventsHome } from "@/components/devnet/sections/EventsHome";
+import { FaqSection } from "@/components/devnet/sections/FaqSection";
+import { FeaturePipeline } from "@/components/devnet/sections/FeaturePipeline";
+import { FeaturedProjectsTeaser } from "@/components/devnet/sections/FeaturedProjectsTeaser";
+import { FinalCta } from "@/components/devnet/sections/FinalCta";
+import { ForBuildersHome } from "@/components/devnet/sections/ForBuildersHome";
+import { ForChaptersHome } from "@/components/devnet/sections/ForChaptersHome";
+import { NetworkMapSection } from "@/components/devnet/sections/NetworkMap";
+import { ParticipationPaths } from "@/components/devnet/sections/ParticipationPaths";
+import { TwoSides } from "@/components/devnet/sections/TwoSides";
+import { WhatIsDevNet } from "@/components/devnet/sections/WhatIsDevNet";
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <LatestNews />
-      <FeaturedPlayers />
-      <Schedule />
-      <Standings />
-      <RosterSection />
-      <FanExperience />
-      <Gallery />
+      <DevNetHero />
+      <WhatIsDevNet />
+      <TwoSides />
+      <AnyoneCanBuild />
+      <CoreBeliefs />
+      <ForBuildersHome />
+      <ForChaptersHome />
+      <FeaturedProjectsTeaser />
+      <FeaturePipeline />
+      <NetworkMapSection />
+      <EventsHome />
+      <ParticipationPaths />
+      <FaqSection />
+      <FinalCta />
     </>
   );
 }

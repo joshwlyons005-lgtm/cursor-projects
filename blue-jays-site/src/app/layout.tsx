@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Inter, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Instrument_Sans, Inter } from "next/font/google";
+
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Navbar } from "@/components/layout/Navbar";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const barlow = Barlow_Condensed({
-  variable: "--font-barlow",
+const instrument = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -22,11 +23,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Toronto Blue Jays | Official Fan Hub",
-    template: "%s | Toronto Blue Jays",
+    default: "DevNet — North American builder network",
+    template: "%s | DevNet",
   },
   description:
-    "Toronto’s MLB team — schedule, roster, news, and the Rogers Centre experience. Built for fans.",
+    "DevNet helps students and builders ship real projects, connect with other builders, and build public proof of work — with AI and modern tools.",
+  openGraph: {
+    title: "DevNet",
+    description:
+      "A builder network across North America — projects, chapters, and community.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -37,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${barlow.variable} ${geistMono.variable} min-h-screen antialiased`}
+        className={`${inter.variable} ${instrument.variable} ${geistMono.variable} min-h-screen antialiased`}
       >
         <Navbar />
         <main className="min-h-screen">{children}</main>
