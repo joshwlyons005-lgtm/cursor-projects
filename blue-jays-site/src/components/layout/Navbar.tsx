@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -14,21 +14,24 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { LINKS } from "@/lib/links";
 import { cn } from "@/lib/utils";
 
 const nav = [
   { href: "/", label: "Home" },
-  { href: "/news", label: "News" },
-  { href: "/roster", label: "Roster" },
-  { href: "/schedule", label: "Schedule" },
-  { href: "/#standings", label: "Standings" },
-  { href: "/#fan-zone", label: "Fan Zone" },
+  { href: "/builders", label: "Builders" },
+  { href: "/chapters", label: "Chapters" },
+  { href: "/projects", label: "Projects" },
+  { href: "/events", label: "Events" },
+  { href: "/about", label: "About" },
+  { href: "/join", label: "Join" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -42,8 +45,8 @@ export function Navbar() {
       className={cn(
         "sticky top-0 z-50 border-b border-white/10 transition-colors",
         scrolled
-          ? "bg-jays-navy/90 backdrop-blur-md supports-backdrop-filter:bg-jays-navy/80"
-          : "bg-jays-navy/70 backdrop-blur-sm"
+          ? "bg-background/90 backdrop-blur-md supports-backdrop-filter:bg-background/80"
+          : "bg-background/70 backdrop-blur-sm"
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
@@ -52,10 +55,10 @@ export function Navbar() {
           className="flex items-center gap-2 transition-opacity hover:opacity-90"
         >
           <Image
-            src="/logo.svg"
-            alt="Toronto Blue Jays"
-            width={160}
-            height={32}
+            src="/devnet-logo.svg"
+            alt="DevNet"
+            width={176}
+            height={40}
             className="h-8 w-auto"
             priority
           />
@@ -66,15 +69,14 @@ export function Navbar() {
             const isActive =
               item.href === "/"
                 ? pathname === "/"
-                : item.href.startsWith("/#")
-                  ? false
-                  : pathname === item.href;
+                : pathname === item.href ||
+                  pathname.startsWith(`${item.href}/`);
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-white/10 hover:text-white",
                   isActive && "bg-white/10 text-white"
                 )}
               >
@@ -82,20 +84,56 @@ export function Navbar() {
               </Link>
             );
           })}
+          <div className="relative ml-2">
+            <button
+              type="button"
+              className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-white/10 hover:text-white"
+              aria-expanded={moreOpen}
+              onClick={() => setMoreOpen((v) => !v)}
+            >
+              More
+              <ChevronDown className="size-4 opacity-70" />
+            </button>
+            {moreOpen ? (
+              <div className="absolute right-0 top-full z-50 mt-2 min-w-[220px] rounded-xl border border-white/10 bg-popover p-2 shadow-lg">
+                <a
+                  href={LINKS.featureForm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-lg px-3 py-2 text-sm text-popover-foreground hover:bg-white/10"
+                >
+                  Submit a Project
+                </a>
+                <Link
+                  href="/chapters"
+                  className="block rounded-lg px-3 py-2 text-sm text-popover-foreground hover:bg-white/10"
+                  onClick={() => setMoreOpen(false)}
+                >
+                  Start a Chapter
+                </Link>
+                <a
+                  href={LINKS.ambassadorForm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-lg px-3 py-2 text-sm text-popover-foreground hover:bg-white/10"
+                >
+                  Become an Ambassador
+                </a>
+              </div>
+            ) : null}
+          </div>
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href="https://www.mlb.com/bluejays/tickets"
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            href="/join"
             className={cn(
               buttonVariants({ size: "sm" }),
-              "hidden bg-jays-red text-white hover:bg-jays-red/90 sm:inline-flex"
+              "hidden bg-primary text-primary-foreground hover:bg-primary/90 sm:inline-flex"
             )}
           >
-            Buy Tickets
-          </a>
+            Join DevNet
+          </Link>
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
@@ -109,7 +147,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="border-white/10 bg-jays-navy text-white"
+              className="border-white/10 bg-background text-white"
             >
               <SheetHeader>
                 <SheetTitle className="font-heading text-left text-lg tracking-wide text-white">
@@ -128,16 +166,38 @@ export function Navbar() {
                   </Link>
                 ))}
                 <a
-                  href="https://www.mlb.com/bluejays/tickets"
+                  href={LINKS.featureForm}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  className="rounded-lg px-3 py-3 text-base font-medium text-slate-100 hover:bg-white/10"
+                >
+                  Submit a Project
+                </a>
+                <Link
+                  href="/chapters"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-3 py-3 text-base font-medium text-slate-100 hover:bg-white/10"
+                >
+                  Start a Chapter
+                </Link>
+                <a
+                  href={LINKS.ambassadorForm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg px-3 py-3 text-base font-medium text-slate-100 hover:bg-white/10"
+                >
+                  Become an Ambassador
+                </a>
+                <Link
+                  href="/join"
+                  onClick={() => setOpen(false)}
                   className={cn(
                     buttonVariants({ size: "default" }),
-                    "mt-4 bg-jays-red text-white hover:bg-jays-red/90"
+                    "mt-4 bg-primary text-primary-foreground hover:bg-primary/90"
                   )}
                 >
-                  Buy Tickets
-                </a>
+                  Join DevNet
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
