@@ -4,6 +4,7 @@ import { SectionHeading, SectionShell } from "@/components/devnet/SectionShell";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { LINKS } from "@/lib/links";
+import { cn } from "@/lib/utils";
 
 const samples = [
   {
